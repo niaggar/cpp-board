@@ -3,23 +3,23 @@
 #include <random>
 
 
-float vmath::distance(const Vect &a, const Vect &b) {
+float vmath::distance(const Vect& a, const Vect& b) {
     return std::sqrt(vmath::distance2(a, b));
 }
 
-float vmath::distance2(const Vect &a, const Vect &b) {
+float vmath::distance2(const Vect& a, const Vect& b) {
     return (float)pow(b.X - a.X, 2) + (float)pow(b.Y - a.Y, 2);
 }
 
-float vmath::dot(const Vect &a, const Vect &b) {
+float vmath::dot(const Vect& a, const Vect& b) {
     return a.X * b.X + a.Y * b.Y;
 }
 
-float vmath::cross(const Vect &a, const Vect &b) {
+float vmath::cross(const Vect& a, const Vect& b) {
     return a.X * b.Y - a.Y * b.X;
 }
 
-Vect vmath::normalize(const Vect &a) {
+Vect vmath::normalize(const Vect& a) {
     float len = a.norm();
     return {a.X / len, a.Y / len};
 }

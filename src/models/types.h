@@ -6,8 +6,8 @@ struct Vect {
 
     float norm() const;
     float norm2() const;
-    Vect operator+(const Vect &v) const;
-    Vect operator-(const Vect &v) const;
+    Vect operator+(const Vect& v) const;
+    Vect operator-(const Vect& v) const;
     Vect operator*(float scalar) const;
     Vect operator/(float scalar) const;
 };
@@ -15,9 +15,18 @@ struct Vect {
 struct Bounds {
     Vect pA, pB;
 
-    bool isIn(const Vect &v) const;
-    bool isLeft(const Vect &v) const;
-    bool isRight(const Vect &v) const;
-    bool isTop(const Vect &v) const;
-    bool isBottom(const Vect &v) const;
+    bool isInside(const Vect& v, float radius) const;
+    bool isLeft(const Vect& v, float radius) const;
+    bool isRight(const Vect& v, float radius) const;
+    bool isTop(const Vect& v, float radius) const;
+    bool isBottom(const Vect &v, float radius) const;
+
+    float bottom() const;
+    float top() const;
+    float left() const;
+    float right() const;
+};
+
+struct MinMax {
+    float min, max;
 };

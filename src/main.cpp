@@ -2,6 +2,7 @@
 #include <cereal/archives/json.hpp>
 #include <SFML/Graphics.hpp>
 
+
 int main() {
     auto videoMode = sf::VideoMode(200, 300);
     auto window = new sf::RenderWindow(videoMode, "CPP Board");
