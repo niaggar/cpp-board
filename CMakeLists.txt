@@ -9,10 +9,8 @@ find_package(imgui CONFIG REQUIRED)
 find_package(ImGui-SFML CONFIG REQUIRED)
 
 add_executable(cpp-board src/main.cpp
-        src/aplication/Window.cpp
-        src/aplication/Window.h
-        src/aplication/Console.cpp
-        src/aplication/Console.h
+        src/aplication/WindowContext.cpp
+        src/aplication/WindowContext.h
         src/models/types.cpp
         src/models/types.h
         src/utils/vmath.cpp
@@ -25,9 +23,14 @@ add_executable(cpp-board src/main.cpp
         src/models/GaltonProps.h
         src/logic/Collider.cpp
         src/logic/Collider.h
-        src/models/ColliderProps.h)
+        src/models/ColliderProps.h
+        src/aplication/RenderContext.cpp
+        src/aplication/RenderContext.h
+        src/aplication/EventsHandler.cpp
+        src/aplication/EventsHandler.h
+)
 
 target_link_libraries(cpp-board PRIVATE sfml-system sfml-network sfml-graphics sfml-window)
 target_link_libraries(cpp-board PRIVATE cereal::cereal)
-target_link_libraries(main PRIVATE imgui::imgui)
-target_link_libraries(main PRIVATE ImGui-SFML::ImGui-SFML)
+target_link_libraries(cpp-board PRIVATE imgui::imgui)
+target_link_libraries(cpp-board PRIVATE ImGui-SFML::ImGui-SFML)

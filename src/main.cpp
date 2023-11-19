@@ -1,17 +1,14 @@
-#include <iostream>
-#include <cereal/archives/json.hpp>
-#include <SFML/Graphics.hpp>
+#include "aplication/WindowContext.h"
 
 
 int main() {
-    auto videoMode = sf::VideoMode(200, 300);
-    auto window = new sf::RenderWindow(videoMode, "CPP Board");
+    WindowContext window_context("Game", sf::Vector2u(800, 600));
+    window_context.setFramerateLimit(60);
 
-    while (window->isOpen()) {
-        sf::Event event{};
-        while (window->pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window->close();
-        }
+    while (window_context.isRunning()) {
+        window_context.run();
+        window_context.display();
     }
+
+    return 0;
 }
