@@ -1,8 +1,9 @@
+#include <imgui-SFML.h>
 #include "aplication/WindowContext.h"
 
 
 int main() {
-    WindowContext window_context("Game", sf::Vector2u(800, 600));
+    WindowContext window_context("Galton Board", sf::Vector2u(800, 600));
     window_context.setFramerateLimit(60);
 
     while (window_context.isRunning()) {

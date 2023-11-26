@@ -6,9 +6,7 @@ RenderContext::RenderContext(sf::RenderWindow &window) : m_window(window) {
 }
 
 void RenderContext::draw() {
-    // fill the window with green color
     m_window.clear(sf::Color::Blue);
-
 
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
@@ -39,8 +37,10 @@ void RenderContext::viewZoom(float zoom) {
 void RenderContext::viewZoomAt(sf::Vector2f zoom_at, float zoom) {
     m_view.zoom(zoom);
     m_view.setCenter(zoom_at);
+    m_window.setView(m_view);
 }
 
 void RenderContext::viewSetCenter(sf::Vector2f center) {
     m_view.setCenter(center);
+    m_window.setView(m_view);
 }

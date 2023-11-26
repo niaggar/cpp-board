@@ -19,7 +19,7 @@ public:
 
     void processEvents(sf::Event& event);
     void registerCallback(EventCallback& event_manager);
-    void unregisterCallbacks(EventCallback& event_manager);
+    void unregisterCallbacks(sf::Event::EventType event_type, const std::string& event_name);
 
 private:
     std::map<sf::Event::EventType, std::vector<EventCallback>> m_event_callbacks;

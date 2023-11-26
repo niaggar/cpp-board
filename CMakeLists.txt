@@ -9,8 +9,8 @@ find_package(imgui CONFIG REQUIRED)
 find_package(ImGui-SFML CONFIG REQUIRED)
 
 add_executable(cpp-board src/main.cpp
-        src/aplication/WindowContext.cpp
-        src/aplication/WindowContext.h
+        src/application/WindowContext.cpp
+        src/application/WindowContext.h
         src/models/types.cpp
         src/models/types.h
         src/utils/vmath.cpp
@@ -24,10 +24,14 @@ add_executable(cpp-board src/main.cpp
         src/logic/Collider.cpp
         src/logic/Collider.h
         src/models/ColliderProps.h
-        src/aplication/RenderContext.cpp
-        src/aplication/RenderContext.h
-        src/aplication/EventsHandler.cpp
-        src/aplication/EventsHandler.h
+        src/application/RenderContext.cpp
+        src/application/RenderContext.h
+        src/application/EventsHandler.cpp
+        src/application/EventsHandler.h
+        src/application/modals/ImguiContext.cpp
+        src/application/modals/ImguiContext.h
+        src/application/modals/ImguiModals.cpp
+        src/application/modals/ImguiModals.h
 )
 
 target_link_libraries(cpp-board PRIVATE sfml-system sfml-network sfml-graphics sfml-window)

@@ -1,11 +1,17 @@
+#include <imgui-SFML.h>
+#include <imgui.h>
 #include "WindowContext.h"
 #include "EventsHandler.h"
+#include "modals/ImguiModals.h"
 
-WindowContext::WindowContext(const std::string& window_name, sf::Vector2u window_size) : m_render_context(this->m_window)
+WindowContext::WindowContext(const std::string& window_name, sf::Vector2u window_size)
+    : m_render_context(this->m_window), m_imgui_context(this->m_window)
 {
-    this->m_window.create(sf::VideoMode(window_size.x, window_size.y), window_name);
+    sf::VideoMode desktopMode = sf::VideoMode::getFullscreenModes().front();
+    this->m_window.create(desktopMode, window_name, sf::Style::Default);
 
     this->registerCallbacks();
+    this->registerModals();
 }
 
 WindowContext::~WindowContext() = default;
@@ -14,12 +20,20 @@ void WindowContext::processEvents() {
     sf::Event event{};
     while (this->m_window.pollEvent(event)) {
         this->m_events_handler.processEvents(event);
+        this->m_imgui_context.processEvent(event);
     }
+}
+
+void WindowContext::processModals() {
+
 }
 
 void WindowContext::run() {
     this->processEvents();
+    this->processModals();
+
     this->m_render_context.draw();
+    this->m_imgui_context.draw();
 }
 
 void WindowContext::display() {
@@ -27,10 +41,12 @@ void WindowContext::display() {
 }
 
 void WindowContext::setFramerateLimit(int limit) {
-    this->m_window.setFramerateLimit(limit);
+    //this->m_window.setFramerateLimit(limit);
+    this->m_window.setVerticalSyncEnabled(true);
 }
 
 void WindowContext::close() {
+    this->m_imgui_context.shutdown();
     this->m_window.close();
 }
 
@@ -90,4 +106,15 @@ void WindowContext::registerCallbacks() {
     this->m_events_handler.registerCallback(cameraZoomEventManager);
     this->m_events_handler.registerCallback(closeKeyEventManager);
     this->m_events_handler.registerCallback(closeEventEventManager);
+}
+
+void WindowContext::registerModals() {
+    auto fpsModal = new FPSModal();
+    this->m_imgui_context.addModal(fpsModal);
+
+    auto cameraModal = new CameraModal(this->m_render_context);
+    this->m_imgui_context.addModal(cameraModal);
+
+    auto optionsModal = new OptionsModal();
+    this->m_imgui_context.addModal(optionsModal);
 }

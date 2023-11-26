@@ -4,6 +4,7 @@
 #include <string>
 #include "RenderContext.h"
 #include "EventsHandler.h"
+#include "modals/ImguiContext.h"
 
 
 class WindowContext {
@@ -12,6 +13,7 @@ public:
     ~WindowContext();
 
     void processEvents();
+    void processModals();
     void run();
     void display();
     void setFramerateLimit(int limit);
@@ -21,8 +23,11 @@ public:
 private:
     std::string m_window_name;
     sf::RenderWindow m_window;
+    sf::Clock m_delta_clock;
     RenderContext m_render_context;
+    ImguiContext m_imgui_context;
     EventsHandler m_events_handler;
 
     void registerCallbacks();
+    void registerModals();
 };

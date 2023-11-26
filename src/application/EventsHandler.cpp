@@ -37,12 +37,11 @@ void EventsHandler::registerCallback(EventCallback &event_manager) {
     m_event_callbacks[event_type].push_back(event_manager);
 }
 
-void EventsHandler::unregisterCallbacks(EventCallback &event_manager) {
-    auto event_type = event_manager.m_event_type;
+void EventsHandler::unregisterCallbacks(sf::Event::EventType event_type, const std::string& event_name) {
     if (m_event_callbacks.find(event_type) != m_event_callbacks.end()) {
         auto callbacks = m_event_callbacks[event_type];
-        auto it = std::remove_if(callbacks.begin(), callbacks.end(), [event_manager](EventCallback& callback) {
-            return callback.m_event_name == event_manager.m_event_name;
+        auto it = std::remove_if(callbacks.begin(), callbacks.end(), [event_name](EventCallback& callback) {
+            return callback.m_event_name == event_name;
         });
 
         if (it != callbacks.end()) {
