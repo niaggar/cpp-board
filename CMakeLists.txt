@@ -3,6 +3,8 @@ project(cpp-board)
 
 set(CMAKE_CXX_STANDARD 23)
 
+set(SFML_STATIC_LIBRARIES TRUE)
+
 find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
 find_package(cereal CONFIG REQUIRED)
 find_package(imgui CONFIG REQUIRED)
@@ -34,7 +36,6 @@ add_executable(cpp-board src/main.cpp
         src/application/modals/ImguiModals.h
 )
 
-target_link_libraries(cpp-board PRIVATE sfml-system sfml-network sfml-graphics sfml-window)
+target_link_libraries(cpp-board PRIVATE sfml-window sfml-graphics sfml-network sfml-system)
 target_link_libraries(cpp-board PRIVATE cereal::cereal)
-target_link_libraries(cpp-board PRIVATE imgui::imgui)
-target_link_libraries(cpp-board PRIVATE ImGui-SFML::ImGui-SFML)
+target_link_libraries(cpp-board PRIVATE imgui::imgui ImGui-SFML::ImGui-SFML)

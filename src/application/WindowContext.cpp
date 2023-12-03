@@ -41,12 +41,11 @@ void WindowContext::display() {
 }
 
 void WindowContext::setFramerateLimit(int limit) {
-    //this->m_window.setFramerateLimit(limit);
-    this->m_window.setVerticalSyncEnabled(true);
+//    this->m_window.setFramerateLimit(limit);
+//    this->m_window.setVerticalSyncEnabled(true);
 }
 
 void WindowContext::close() {
-    this->m_imgui_context.shutdown();
     this->m_window.close();
 }
 
@@ -112,8 +111,8 @@ void WindowContext::registerModals() {
     auto fpsModal = new FPSModal();
     this->m_imgui_context.addModal(fpsModal);
 
-    auto cameraModal = new CameraModal(this->m_render_context);
-    this->m_imgui_context.addModal(cameraModal);
+//    auto cameraModal = new CameraModal(this->m_render_context);
+//    this->m_imgui_context.addModal(cameraModal);
 
     auto optionsModal = new OptionsModal();
     this->m_imgui_context.addModal(optionsModal);

@@ -16,7 +16,10 @@ public:
     void draw() override {
         ImGui::SetNextWindowPos(ImVec2(10, 10));
         ImGui::Begin("FPS", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
-        ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
+
+        auto frames = ImGui::GetIO().Framerate;
+
+        ImGui::Text("FPS: %.1f", frames);
         ImGui::End();
     }
 

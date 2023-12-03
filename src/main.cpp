@@ -1,5 +1,5 @@
 #include <imgui-SFML.h>
-#include "aplication/WindowContext.h"
+#include "application/WindowContext.h"
 
 
 int main() {
